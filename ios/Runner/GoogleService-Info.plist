@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>102295737240-i4q2j80p115jakvktmufrnr1m6er9fkr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.102295737240-i4q2j80p115jakvktmufrnr1m6er9fkr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBenaM-quiNMFZPazsDiABPYvDGefJHorQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>102295737240</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.lordSchool</string>
+	<key>PROJECT_ID</key>
+	<string>lordschool-25d63</string>
+	<key>STORAGE_BUCKET</key>
+	<string>lordschool-25d63.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:102295737240:ios:04a342feef9f09702c91ed</string>
+</dict>
+</plist>

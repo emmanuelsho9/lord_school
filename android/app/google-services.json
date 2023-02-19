@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "102295737240",
+    "project_id": "lordschool-25d63",
+    "storage_bucket": "lordschool-25d63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102295737240:android:50ddf95a4012c14c2c91ed",
+        "android_client_info": {
+          "package_name": "com.example.lord_school"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102295737240-tqofpb4n4oa24hs8hcn4sf58gv77uenm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDae5AjLa4EAP1YcddPhx-EfgG4pOvG7dg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102295737240-tqofpb4n4oa24hs8hcn4sf58gv77uenm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
