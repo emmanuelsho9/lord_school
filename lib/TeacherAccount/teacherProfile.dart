@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lord_school/TeacherAccount/teacherHome.dart';
+import 'package:lord_school/TeacherAccount/teacherUpdateProfile.dart';
 
-import '../../const/const.dart';
-import '../createProfile.dart';
-import '../myHomePage.dart';
+import '../mvvm/const/const.dart';
+import '../mvvm/view/createProfile.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({Key? key}) : super(key: key);
+
+class TeacherSignUp extends StatelessWidget {
+  TeacherSignUp({Key? key}) : super(key: key);
 
   bool IsVisible = true;
   String? cla;
@@ -49,7 +51,7 @@ class SignUp extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Hi Student",
+                          "Hi Teacher",
                           style: TextStyle(
                               fontSize: 34,
                               fontWeight: FontWeight.w300,
@@ -57,7 +59,7 @@ class SignUp extends StatelessWidget {
                               color: Colors.white),
                         ),
                         Text(
-                          "Create Account as a Student",
+                          "Create Account as a Teacher",
                           style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.w400,
@@ -180,9 +182,9 @@ class SignUp extends StatelessWidget {
                                       setState((){});
                                     }else{
 
-                                    setState(() {
-                                      department = value;
-                                     });}
+                                      setState(() {
+                                        department = value;
+                                      });}
                                   },
                                 ),
                               ),
@@ -231,11 +233,11 @@ class SignUp extends StatelessWidget {
                               _lastNameController.text.isEmpty) {
                             print("object");
                           } else {
-                            Get.to(CreateProfile(), arguments: [
-                              cla,
+                            Get.to(TeacherCreateProfile(), arguments: [
+                              cla!,
                               _firstNameController.text.trim(),
-                               _lastNameController.text.trim(),
-                              termcla,
+                              _lastNameController.text.trim(),
+                              termcla!,
                               department
                             ]);
                           }
@@ -247,7 +249,7 @@ class SignUp extends StatelessWidget {
                       const Gap(10),
                       InkWell(
                         onTap: () {
-                          Get.off(MyHomePage());
+                         Get.off(TeacherHome());
                         },
                         child: Container(
                           child: Row(

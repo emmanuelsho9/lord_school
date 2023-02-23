@@ -29,6 +29,18 @@ class BtnLogin extends StatelessWidget {
 }
 var auth = FirebaseAuth.instance;
 
+var Crouning =  CircularProgressIndicator(backgroundColor: Mcolor,color: Colors.white,);
+
+
+var rolling = Center(
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Crouning
+    ],
+  ),
+);
+
 
 var firebaseToAdd = FirebaseFirestore.instance
     .collection("School")
@@ -37,8 +49,35 @@ var firebaseToAdd = FirebaseFirestore.instance
     .doc("TeacherDoc")
     .collection("Students")
     .doc("details")
-    .collection("Path") .doc(auth.currentUser?.uid)
+    .collection("Class") .doc(auth.currentUser?.uid)
     .collection("StudentProfile").doc(auth.currentUser?.uid);
+String userName="";
+
+
+getUserData() async {
+  DocumentSnapshot userSnapshot = await firebaseToAdd.get();
+  userName = userSnapshot.get('DateofAdmissiion');
+  print(userName);
+}
+
+
+var firebaseAdmin = FirebaseFirestore.instance.collection("Amin").doc("School").collection("JSS1").doc();
 
 
 
+var teacherAssignment = FirebaseFirestore.instance
+    .collection("School")
+    .doc("AdminDoc")
+    .collection("AdminCollection")
+    .doc("TeacherDoc")
+    .collection("Students")
+    .doc("details")
+    .collection("Class");
+
+
+
+var eventFirebase = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("EventNow").collection("Event");
+var galleryAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("GalleryNow").collection("Gallery");
+var leaveApplicationAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("Leave").collection("Leave");
+var askAboutApplicationAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("AskAbout").collection("AskAbout");
+var schoolHolidayApplicationAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("holiday").collection("holiday");

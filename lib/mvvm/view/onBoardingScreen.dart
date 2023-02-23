@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:lord_school/mvvm/const/const.dart';
 
 
+import '../../TeacherAccount/teacherHome.dart';
 import 'myHomePage.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -43,7 +44,7 @@ class OnboardingScreen extends StatelessWidget {
 
               },child: Image.asset("assets/img_6.png", scale: 2,)),
 
-
+ 
             ],
           ),
         ),

@@ -8,23 +8,22 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lord_school/Admin/adminClassModel.dart';
 import 'package:lord_school/mvvm/model/studentClass.dart';
 import 'package:lord_school/mvvm/view/StudentsDashboard.dart';
 import 'package:uuid/uuid.dart';
 
-import '../const/const.dart';
+import '../mvvm/const/const.dart';
 
-class CreateProfile extends StatefulWidget {
-  CreateProfile({
+class TeacherCreateProfile extends StatefulWidget {
+  TeacherCreateProfile({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CreateProfile> createState() => _CreateProfileState();
+  State<TeacherCreateProfile> createState() => _TeacherCreateProfileState();
 }
 
-class _CreateProfileState extends State<CreateProfile> {
+class _TeacherCreateProfileState extends State<TeacherCreateProfile> {
   File? selectedImg;
 
   var uuid = const Uuid();
@@ -34,9 +33,9 @@ class _CreateProfileState extends State<CreateProfile> {
   final TextEditingController _parentEmailController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _MotherFullNameController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController _FatherFullNameController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController _accountEmailController = TextEditingController();
   final TextEditingController _PasswordController = TextEditingController();
   String ini = "ddd";
@@ -97,9 +96,9 @@ class _CreateProfileState extends State<CreateProfile> {
                           child: selectedImg != null
                               ? null
                               : const Text(
-                                  "Passport",
-                                  style: TextStyle(fontSize: 12),
-                                ),
+                            "Passport",
+                            style: TextStyle(fontSize: 12),
+                          ),
                         ),
                         const Gap(10),
                         Column(
@@ -115,7 +114,7 @@ class _CreateProfileState extends State<CreateProfile> {
                             Row(
                               children: [
                                 const Text(
-                                  "Class:",
+                                  "Teacher`s Class:",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -134,25 +133,6 @@ class _CreateProfileState extends State<CreateProfile> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "Term: ",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  "${arguments[3]}",
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Text(
                                   "Department: ",
                                   style: TextStyle(
                                       fontSize: 16,
@@ -160,7 +140,7 @@ class _CreateProfileState extends State<CreateProfile> {
                                       color: Colors.black),
                                 ),
                                 Text(
-                                 arguments[0]=="JSS1"||arguments[0]=="JSS3"||arguments[0]=="JSS2"?dp="Null": dp="${arguments[4]}",
+                                  arguments[0]=="JSS1"||arguments[0]=="JSS3"||arguments[0]=="JSS2"?dp="Null": dp="${arguments[4]}",
                                   style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -177,8 +157,8 @@ class _CreateProfileState extends State<CreateProfile> {
                                 onPressed: () async {
                                   final pickedImg = await ImagePicker()
                                       .pickImage(
-                                          source: ImageSource.gallery,
-                                          imageQuality: 85);
+                                      source: ImageSource.gallery,
+                                      imageQuality: 85);
 
                                   if (pickedImg == null) return;
                                   final imgTemp = File(pickedImg.path);
@@ -204,7 +184,7 @@ class _CreateProfileState extends State<CreateProfile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "Admission No",
+                                  "Teacher No",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -246,237 +226,8 @@ class _CreateProfileState extends State<CreateProfile> {
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Date of Admission",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.grey),
-                                ),
-                                Container(
-                                  child: InkWell(
-                                    onTap: () async {
-                                      DateTime? dateTime = await showDatePicker(
-                                          context: context,
-                                          initialDate: _academicDate,
-                                          firstDate: DateTime(1900),
-                                          builder: (context, child) {
-                                            return Theme(
-                                              data: Theme.of(context).copyWith(
-                                                colorScheme: ColorScheme.light(
-                                                  primary:
-                                                      Mcolor, // <-- SEE HERE
-                                                  onPrimary: Colors
-                                                      .white, // <-- SEE HERE
-                                                  onSurface:
-                                                      const Color.fromARGB(
-                                                          255,
-                                                          66,
-                                                          125,
-                                                          145), // <-- SEE HERE
-                                                ),
-                                                textButtonTheme:
-                                                    TextButtonThemeData(
-                                                  style: TextButton.styleFrom(
-                                                    primary:
-                                                        Mcolor, // button text color
-                                                  ),
-                                                ),
-                                              ),
-                                              child: child!,
-                                            );
-                                          },
-                                          lastDate: DateTime(3000));
-
-                                      if (dateTime != null) {
-                                        setState(() {
-                                          _academicDate = dateTime;
-                                        });
-                                      }
-                                    },
-                                    child: TextFormField(
-                                      enabled: false,
-                                      keyboardType: TextInputType.name,
-                                      decoration: InputDecoration(
-                                          suffix:
-                                              const Icon(Icons.calendar_month),
-                                          hintText:
-                                              "${_academicDate.day}-${_academicDate.month}-${_academicDate.year}"),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Gap(35),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Student DOB",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.grey),
-                                ),
-                                SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.40,
-                                    child: InkWell(
-                                      onTap: () async {
-                                        DateTime? dateTime =
-                                            await showDatePicker(
-                                                context: context,
-                                                initialDate: _dateOfBirthDate,
-                                                firstDate: DateTime(1900),
-                                                builder: (context, child) {
-                                                  return Theme(
-                                                    data: Theme.of(context)
-                                                        .copyWith(
-                                                      colorScheme:
-                                                          ColorScheme.light(
-                                                        primary:
-                                                            Mcolor, // <-- SEE HERE
-                                                        onPrimary: Colors
-                                                            .white, // <-- SEE HERE
-                                                        onSurface: const Color
-                                                                .fromARGB(
-                                                            255,
-                                                            66,
-                                                            125,
-                                                            145), // <-- SEE HERE
-                                                      ),
-                                                      textButtonTheme:
-                                                          TextButtonThemeData(
-                                                        style: TextButton
-                                                            .styleFrom(
-                                                          primary:
-                                                              Mcolor, // button text color
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    child: child!,
-                                                  );
-                                                },
-                                                lastDate: DateTime(3000));
-
-                                        if (dateTime != null) {
-                                          setState(() {
-                                            _dateOfBirthDate = dateTime;
-                                          });
-                                        }
-                                      },
-                                      child: TextFormField(
-                                        enabled: false,
-                                        keyboardType: TextInputType.name,
-                                        decoration: InputDecoration(
-                                            suffix: const Icon(
-                                                Icons.calendar_month),
-                                            hintText:
-                                                "${_dateOfBirthDate.day}-${_dateOfBirthDate.month}-${_dateOfBirthDate.year}"),
-                                      ),
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Parent Email",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.grey),
-                                ),
-                                TextFormField(
-                                  controller: _parentEmailController,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Enter Parent Email";
-                                    }
-                                  },
-                                  keyboardType: TextInputType.name,
-                                  decoration: const InputDecoration(
-                                      hintText: "Parent Email"),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
                       const Gap(20),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Mother FullName",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.grey),
-                                ),
-                                TextFormField(
-                                  controller: _MotherFullNameController,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Enter Mother Full Name";
-                                    }
-                                  },
-                                  keyboardType: TextInputType.name,
-                                  decoration: const InputDecoration(
-                                      hintText: "Mother FullName"),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
                       const Gap(20),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Father Name",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.grey),
-                                ),
-                                TextFormField(
-                                  controller: _FatherFullNameController,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Enter Father Full Name";
-                                    }
-                                  },
-                                  keyboardType: TextInputType.name,
-                                  decoration: const InputDecoration(
-                                      hintText: "Father FullName"),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
                       const Gap(20),
                       Row(
                         children: [
@@ -500,7 +251,7 @@ class _CreateProfileState extends State<CreateProfile> {
                                   },
                                   keyboardType: TextInputType.name,
                                   decoration:
-                                      const InputDecoration(hintText: "Email"),
+                                  const InputDecoration(hintText: "Email"),
                                 ),
                               ],
                             ),
@@ -573,10 +324,10 @@ class _CreateProfileState extends State<CreateProfile> {
                         onTap: createAccoun,
                         child: isLoading == false
                             ? BtnLogin(
-                                text: "Create Account",
-                              )
+                          text: "Create Account",
+                        )
                             : CircularProgressIndicator(
-                                backgroundColor: Mcolor, color: Colors.white),
+                            backgroundColor: Mcolor, color: Colors.white),
                       ),
                       const Gap(20),
                     ],
@@ -610,19 +361,19 @@ class _CreateProfileState extends State<CreateProfile> {
         Reference ref = FirebaseStorage.instance.ref();
         Reference reDImg = ref.child("image");
         Reference refUploadImg =
-            reDImg.child(_accountEmailController.text.trim());
+        reDImg.child(_accountEmailController.text.trim());
         await refUploadImg.putFile(selectedImg!);
         var imUrl = await refUploadImg.getDownloadURL();
         await auth
             .createUserWithEmailAndPassword(
-                email: _accountEmailController.text.trim(),
-                password: _PasswordController.text.trim())
+            email: _accountEmailController.text.trim(),
+            password: _PasswordController.text.trim())
             .then((value) {
           var student = StudentDetails(
               admissionNo: uuid.v1(),
               academic: _academicDate.year.toString(),
               dateofAdmissiion:
-                  "${_academicDate.day}-${_academicDate.month}-${_academicDate.year}",
+              "${_academicDate.day}-${_academicDate.month}-${_academicDate.year}",
               parentEmail: _parentEmailController.text.trim(),
               motherFullName: _MotherFullNameController.text.trim(),
               fatherFullName: _FatherFullNameController.text.trim(),
@@ -633,18 +384,12 @@ class _CreateProfileState extends State<CreateProfile> {
               lastName: "${arguments[2]}",
               passPort: imUrl.toString().trim(),
               StudentdateOfBirth:
-                  "${_dateOfBirthDate.day}-${_dateOfBirthDate.month}-${_dateOfBirthDate.year}",
+              "${_dateOfBirthDate.day}-${_dateOfBirthDate.month}-${_dateOfBirthDate.year}",
               Address: _addressController.text.trim(),
               attendaceCount: 0, schoolLent: 0, dp: dp);
 
           firebaseToAdd.set(student.toJson()).then((value) {
             Get.off(StudentsDashboard());
-          }).then((value) async {
-
-            var admin = AdminDetails(schoolFee: "schoolFee", nameofPrincpal: "nameofPrincpal", nameofVisePrincpal: "nameofVisePrincpal", nameofVisePrincpalTwo: "nameofVisePrincpalTwo");
-
-
-            await firebaseAdmin.set(admin.toJson());
           });
         });
         isLoading = false;

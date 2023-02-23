@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-class StudentDetails {
-  StudentDetails({
+class TeacherDetails {
+  TeacherDetails({
     required this.admissionNo,
     required this.academic,
     required this.dp,
@@ -18,8 +18,8 @@ class StudentDetails {
     required this.Address,
     required this.studentDetailsClass,
     required this.term,
-   required  this.attendaceCount,
-   required  this.schoolLent,
+    required  this.attendaceCount,
+    required  this.schoolLent,
     required this.firstName,
     required this.lastName,
     required this.passPort,
@@ -43,7 +43,7 @@ class StudentDetails {
   String lastName;
   String passPort;
 
-  factory StudentDetails.fromJson(Map<String, dynamic> json) => StudentDetails(
+  factory TeacherDetails.fromJson(Map<String, dynamic> json) => TeacherDetails(
     admissionNo: json["Admission No"],
     schoolLent: json["schoolLent"],
     dp: json["dp"],
