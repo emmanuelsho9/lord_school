@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:lord_school/mvvm/view/StudentsDashboard.dart';
 
 import '../const/const.dart';
+import '../viewModel/Auth.dart';
 import 'ScreenWidget/SignUp.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -148,7 +149,26 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             const Gap(35),
                             InkWell(
-                                onTap: login,
+                                onTap: () async {
+                                 try{
+                                   IsVisible=false;
+                                   setState(() {
+
+                                   });
+                                   await AuthLord().login(email: _emailController.text, password: _passwordController.text);
+                                   IsVisible=true;
+                                   setState(() {
+
+                                   });
+                                 }catch(e){
+                                   IsVisible=true;
+                                   setState(() {
+
+                                   Get.snackbar("Error", "$e".replaceAll("firebase_auth/wrong-password", "Hi user"));
+                                   });
+                                   print(e);
+                                 }
+                                 },
                                 child: IsVisible == false
                                     ? Center(
                                         child: CircularProgressIndicator(
@@ -193,31 +213,4 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 
-  login() async {
-    IsVisible = false;
-    setState(() {});
-    _keyForm.currentState?.validate();
-    try{
-      if (_emailController.text.isEmpty && _passwordController.text.isEmpty) {
-      } else {
-        await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-            email: _emailController.text.trim(),
-            password: _passwordController.text.trim())
-            .then((value) {
-          Get.off( StudentsDashboard());
-        });
-
-        IsVisible = true;
-        setState(() {});
-      }
-    }catch(e){
-      IsVisible = true;
-      setState(() {});
-      showDialog(context: context, builder: (context) => AlertDialog(title: Text("$e".replaceAll("firebase_auth", "User"))),);
-      print(e);
-    }
-
-   
-  }
 }

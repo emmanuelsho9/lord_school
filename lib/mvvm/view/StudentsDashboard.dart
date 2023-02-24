@@ -6,6 +6,7 @@ import 'package:lord_school/Admin/adminClassModel.dart';
 import 'package:lord_school/mvvm/view/myHomePage.dart';
 import 'package:get/get.dart';
 import 'package:lord_school/mvvm/view/payment/paymentscreen.dart';
+import 'package:lord_school/mvvm/view/platQuiz.dart';
 import 'package:lord_school/mvvm/view/result.dart';
 import 'package:lord_school/mvvm/view/studetnProfile.dart';
 import 'package:lord_school/mvvm/view/timeTable.dart';
@@ -51,7 +52,9 @@ class StudentsDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
+      floatingActionButton: FloatingActionButton(onPressed: () async {
+
+
       },child: const Text("Admin")),
       body: SingleChildScrollView(
         child: Column(
@@ -299,6 +302,7 @@ class StudentsDashboard extends StatelessWidget {
                           secondImg: 'assets/img_12.png',
                           FirstonTap: () {
                             // Get.to(PlayQuiz());
+                             Get.to(QuizPage());
                           },
                           SecondonTap: () {
                             Get.to(Assignment(Class: admin!.studentDetailsClass,));
@@ -589,3 +593,79 @@ class ContainerForSchoolHoliday extends StatelessWidget {
     );
   }
 }
+
+
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter/material.dart';
+//
+// class Main extends StatefulWidget {
+//   Main({Key? key}) : super(key: key);
+//
+//   @override
+//   _MainState createState() => _MainState();
+// }
+//
+// class _MainState extends State<Main> {
+//   int selectedOptionIndex = -1; // initially none is selected
+//
+//   List<String> topic = ["What is your name", "How old are you?", "What are you doing?"];
+//   List<String> options = [];
+//   List<int> optionValues = [];
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Initialize Firebase
+//     Firebase.initializeApp().whenComplete(() {
+//       // Fetch data from Firebase Firestore
+//       FirebaseFirestore.instance.collection('options').doc('sample').get().then((snapshot) {
+//         if (snapshot.exists) {
+//           Map<String, dynamic> data = snapshot.data()!;
+//           // Update state with options data
+//           setState(() {
+//             options = List<String>.from(data['options']);
+//             optionValues = List<int>.from(data['values']);
+//           });
+//         }
+//       });
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(topic[0]),
+//           Flexible(
+//             child: ListView.builder(
+//               shrinkWrap: true,
+//               itemCount: options.length,
+//               itemBuilder: (context, index) {
+//                 String option = options[index];
+//                 int value = optionValues[index];
+//                 return RadioListTile<int>(
+//                   title: Text(option),
+//                   value: value,
+//                   groupValue: selectedOptionIndex,
+//                   onChanged: (int? value) {
+//                     setState(() {
+//                       selectedOptionIndex = value!;
+//                     });
+//                   },
+//                 );
+//               },
+//             ),
+//           ),
+//           Flexible(
+//             child: selectedOptionIndex >= 0
+//                 ? Text(optionValues[selectedOptionIndex].toString())
+//                 : SizedBox.shrink(),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
