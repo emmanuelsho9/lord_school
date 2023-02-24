@@ -20,6 +20,7 @@ import 'ATTENDANCEHOLIDAY.dart';
 import 'AskDoubt.dart';
 import 'Events.dart';
 import 'Glarry.dart';
+import 'amountPage.dart';
 import 'assignment.dart';
 import 'leaveApplication.dart';
 
@@ -208,83 +209,98 @@ class StudentsDashboard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                            //Get.to(Payment(price: '80000',));
-                            Get.to(Transcation());
-                        },
-                        child: Container(
-                          width: 164.88,
-                          height: 201.28,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: const Color(0xFF2C66D6), width: 1)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 70,
-                                height: 70,
+
+                      FutureBuilder<StudentDetails>(
+                        future: Details(),
+                        builder: (context, snapshot) {
+                          if(snapshot.hasData){
+                            var student = snapshot.data!;
+                            return  InkWell(
+                              onTap: () {
+                                //Get.to(Payment(price: '80000',));
+                                Get.to(AmountPage(email: student.parentEmail,));
+                              },
+                              child: Container(
+                                width: 164.88,
+                                height: 201.28,
                                 decoration: BoxDecoration(
-                                    color: const Color(0xFFFFD8FF),
-                                    borderRadius: BorderRadius.circular(100),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
                                     border: Border.all(
-                                        color: Colors.white, width: 2)),
-                                child: Center(
-                                    child: Image.asset(
-                                  "assets/img_8.png",
-                                  scale: 2,
-                                )),
+                                        color: const Color(0xFF2C66D6), width: 1)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 70,
+                                      height: 70,
+                                      decoration: BoxDecoration(
+                                          color: const Color(0xFFFFD8FF),
+                                          borderRadius: BorderRadius.circular(100),
+                                          border: Border.all(
+                                              color: Colors.white, width: 2)),
+                                      child: Center(
+                                          child: Image.asset(
+                                            "assets/img_8.png",
+                                            scale: 2,
+                                          )),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children:  [
+                                        const   Text(
+                                          "N",
+                                          style: TextStyle(
+                                              fontSize: 32,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+
+
+
+                                        FutureBuilder<StudentDetails>(
+                                            future: Details(),
+                                            builder: (context, snapshot) {
+                                              var admin = snapshot.data;
+                                              if(snapshot.connectionState==ConnectionState.waiting){
+                                                return  rolling;
+                                              }
+                                              else if(snapshot.hasData){
+                                                return Text(
+                                                  "80,000",
+                                                  style: const TextStyle(
+                                                      fontSize: 32,
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.w400),
+                                                );
+
+                                              }else{
+                                                return  rolling;
+                                              }
+                                            }
+                                        ),
+                                      ],
+                                    ),
+                                    const Text(
+                                      "Fees Due",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xFF6184C7)),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children:  [
-                               const   Text(
-                                    "N",
-                                    style: TextStyle(
-                                        fontSize: 32,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400),
-                                  ),
+                            );
+
+                          }else{
+                            return rolling;
+                          }
+                        },),
 
 
 
-                                  FutureBuilder<StudentDetails>(
-                                    future: Details(),
-                                    builder: (context, snapshot) {
-                                      var admin = snapshot.data;
-                                      if(snapshot.connectionState==ConnectionState.waiting){
-                                        return  rolling;
-                                      }
-                                      else if(snapshot.hasData){
-                                      return Text(
-                                        "80,000",
-                                        style: const TextStyle(
-                                            fontSize: 32,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w400),
-                                      );
 
-                                      }else{
-                                      return  rolling;
-                                      }
-                                    }
-                                  ),
-                                ],
-                              ),
-                              const Text(
-                                "Fees Due",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color(0xFF6184C7)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   const Gap(16),

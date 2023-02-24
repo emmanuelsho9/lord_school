@@ -81,3 +81,5 @@ var galleryAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc
 var leaveApplicationAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("Leave").collection("Leave");
 var askAboutApplicationAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("AskAbout").collection("AskAbout");
 var schoolHolidayApplicationAdmin = FirebaseFirestore.instance.collection("School").doc("AdminDoc").collection("AdminCollection").doc("holiday").collection("holiday");
+var paymentOption = FirebaseFirestore.instance.collection("School").doc("schoolFee").collection("option");
+var paymentSchoolFee = FirebaseFirestore.instance.collection("School").doc("schoolFee").collection("option").doc("SchholFee");

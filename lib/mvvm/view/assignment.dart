@@ -14,7 +14,7 @@ class Assignment extends StatelessWidget {
 print(Class);
     var appBar =AppBar(
       backgroundColor: Mcolor,
-      title: Text("Attendance"),
+      title: const Text("Attendance"),
       elevation: 0,
 
     );
